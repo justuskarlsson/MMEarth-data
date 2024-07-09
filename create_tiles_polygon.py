@@ -3,11 +3,12 @@ A script to create a geojson with the tiles from various ecoregions or biomes of
 '''
 
 import hashlib
+import os
 import ee
 from datetime import datetime
 import json
 # Initialize Earth Engine
-ee.Initialize(project = 'global-rl-2')
+ee.Initialize(project = 'ee-karlssonjustus')
 import hydra
 from omegaconf import DictConfig, OmegaConf
 import random
@@ -48,6 +49,8 @@ def main(cfg: DictConfig) -> None:
     elif cfg.uniform_type == 0:
         print('------- Unform across biomes only --------')
         NUM_IMAGES_PER_BIOME = NUM_IMAGES // cfg.num_of_biomes
+        print("Current dir:", os.getcwd())
+        print("List dir:", os.listdir())
         area_biome = json.load(open('./stats/total_area_biome.json'))
         area_eco = json.load(open('./stats/total_area_eco_region.json'))
 
