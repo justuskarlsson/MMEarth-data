@@ -88,7 +88,7 @@ class ee_set:
             for data_name, image in self.image_set.items():
                 if data_name == self.cfg.datasets[0]:
                     continue
-
+                print("Merge:", data_name)
                 if isinstance(image, dict):
                     for extra_info, img in image.items():
                         if img is None:
@@ -544,6 +544,28 @@ class ee_set:
         logging.debug(f"Time taken for {data_name}: {time.time() - start}")
 
         
+
+    def copernicus_dem(self):
+        """
+        This function gets the Copernicus DEM data for the tile.
+        """
+        start = time.time()
+        cfg = self.cfg.copernicus_dem
+        data_name = cfg.name
+        bands = list(cfg.BANDS)
+        dem = (
+            ee
+            .ImageCollection(cfg.collection)
+            .filterBounds(self.polygon)
+            .map(lambda image: image.clip(self.polygon))
+            .select(bands)
+        )
+        dem = dem.first()
+        dem = dem.resample('bilinear').reproject(self.proj)
+        self.image_set[data_name] = dem
+        self.img_bands[data_name] = dem.bandNames().getInfo()
+        logging.debug('\t Copernicus DEM loaded')
+        logging.debug(f"Time taken for {data_name}: {time.time() - start}")
 
 
 

@@ -2,8 +2,8 @@ hydra:
   job:
     chdir: false
 biome_names_path: 'stats/biome_names.json' # path to the file containing the names of the biomes
-tiles_geojson_path: '${oc.env:DATA}/MMEarth/tile_polygons/uni_biomes_only.geojson' # path to the file containing the tiles 
-failed_eco_regions_path: '${oc.env:DATA}/MMEarth/tile_polygons/failed_eco_regions.txt' # path to the file containing the eco regions that failed to download
+tiles_geojson_path: '${oc.env:DATA}/tile_polygons/uni_biomes_only.geojson' # path to the file containing the tiles 
+failed_eco_regions_path: '${oc.env:DATA}/tile_polygons/failed_eco_regions.txt' # path to the file containing the eco regions that failed to download
 
 
 tile_size: 1300 # 1.3km

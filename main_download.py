@@ -24,11 +24,10 @@ warnings.filterwarnings("ignore")
 
 
 
-@hydra.main(config_path='config', config_name='config_data')
+@hydra.main(config_path='config', config_name='config_data_3d')
 def main(cfg: DictConfig) -> None:
     print(OmegaConf.to_yaml(cfg))
-
-
+    
     # setting up the logger. Logs both to the console and to a file inside outputs/ date/ time. This is created by hydra
     numeric_level = getattr(logging, cfg.log.upper(), None)
     if not isinstance(numeric_level, int):
