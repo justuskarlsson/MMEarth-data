@@ -30,10 +30,10 @@ NO_DATA_VAL = {
 # SUBSET_SIZE = 100000 ##### define subset size here, we only compute mean and std for a subset
 # STORE_PATH = "/home/qbk152/vishal/global-lr/data/data_1M_130/data_1M_130_band_stats.json"
 
-# DATA_PATH = "/projects/dereeco/data/global-lr/data_1M_130/data_1M_130.h5"
-# TILE_INFO = "/projects/dereeco/data/global-lr/data_1M_130/data_1M_130_tile_info.json"
-# SUBSET_SIZE = 100000 ##### define subset size here, we only compute mean and std for a subset
-# STORE_PATH = "/projects/dereeco/data/global-lr/data_1M_130/data_1M_130_band_stats.json"
+DATA_PATH = "/proj/cvl/users/x_juska/data/MMEarth/data_10k_3d/data_10k_3d.h5"
+TILE_INFO = "/proj/cvl/users/x_juska/data/MMEarth/data_10k_3d/data_10k_3d_tile_info.json"
+SUBSET_SIZE = 10000 ##### define subset size here, we only compute mean and std for a subset
+STORE_PATH = "/proj/cvl/users/x_juska/data/MMEarth/data_10k_3d/data_10k_3d_band_stats.json"
 
 
 
@@ -57,6 +57,8 @@ def compute_band_stats(data_folder = '', tile_info = '', store_path = ''):
     f = h5py.File(data_path, 'r')
 
     meta = f['metadata']
+    # print(([m for m in meta]))
+    # exit()
     bands = list(i for i in f.keys() if i != 'metadata')
     print(bands)
 
@@ -127,6 +129,8 @@ def compute_band_stats(data_folder = '', tile_info = '', store_path = ''):
 
             for idx, i in enumerate(indices):
                 name = meta[i][0].decode('utf-8')
+                if not name:
+                    continue
                 if tile_info[name]['S2_type'] == "l2a":
                     image = np.float64(f[band][i])
                     channel_sums_l2a += np.sum(image, axis=(1, 2), where=(image != NO_DATA_VAL[band]))

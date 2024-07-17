@@ -7,9 +7,6 @@ import numpy as np
 import os
 import json
 
-# data_path = "/home/qbk152/vishal/global-lr/data/data_100k_130.h5"
-# tile_info = "/home/qbk152/vishal/global-lr/data/data_100k_130_tile_info.json"
-# store_path = "/home/qbk152/vishal/global-lr/data/data_100k_130_splits.json"
 
 
 def create_splits(data_folder = '', tile_info = '', store_path = '', train_split=0.9, val_split=0.1, test_split=0):
@@ -100,5 +97,8 @@ def create_splits(data_folder = '', tile_info = '', store_path = '', train_split
     # f_out.close()
 
 
+
+data_folder =  "/proj/cvl/users/x_juska/data/MMEarth/data_10k_3d/"
 if __name__ == '__main__':
-    create_splits(data_path, tile_info, store_path) 
+
+    create_splits(data_folder) 

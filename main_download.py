@@ -60,6 +60,11 @@ def main(cfg: DictConfig) -> None:
     end = min(cfg.end_at, len(gj['features']))
     
     start = time.time()
+    tile_info_path = os.path.join(
+        cfg.export_folder,
+        "tile_info",
+        f"tile_info_{cfg.start_from}_{cfg.end_at}.json",
+    )
 
     while i < end:
         start_ = time.time()
@@ -79,8 +84,8 @@ def main(cfg: DictConfig) -> None:
         logging.debug(f"Time taken for 1 tile: {time.time() - start_}")
         if cfg.update_geojson and not ee_set_.no_data:
             tile_info_dict[id] = update_tile_info(tile, ee_set_, tile_info[id] if tile_info is not None else None)
-            os.makedirs(f"./data/tile_info", exist_ok=True)
-            with open(f"./data/tile_info/tile_info_{cfg.start_from}_{cfg.end_at}.json", 'w') as f:
+            os.makedirs(os.path.dirname(tile_info_path), exist_ok=True)
+            with open(tile_info_path, 'w') as f:
                 geojson.dump(tile_info_dict, f)
         elif ee_set_.no_data:
             logging.info(f"no sentinel2 data for this tile. Skipping")

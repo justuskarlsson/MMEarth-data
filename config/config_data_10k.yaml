@@ -1,4 +1,6 @@
-
+hydra:
+  job:
+    chdir: false
 # general config
 export_folder: "${oc.env:DATA}/data_10k_3d" # name of the main folder inside the bucket or the local folder
 # bucket: global-dataset # name of the bucket
