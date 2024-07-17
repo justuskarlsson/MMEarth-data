@@ -1,0 +1,51 @@
+{
+    "tgssccvg_0": {
+        "S2_DATE": "2017-04-20",
+        "S2_type": "l1c",
+        "CRS": "EPSG:32610",
+        "lat": 38.79440357691547,
+        "lon": -121.77260250000097,
+        "biome": 4,
+        "eco_region": 428,
+        "NO_DATA": false,
+        "BANDS": {
+            "sentinel2": [
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "B6",
+                "B7",
+                "B8A",
+                "B8",
+                "B9",
+                "B10",
+                "B11",
+                "B12",
+                "QA60"
+            ],
+            "sentinel1_asc": [
+                "VV",
+                "VH"
+            ],
+            "sentinel1_desc": [
+                "VV",
+                "VH"
+            ],
+            "dynamic_world": [
+                "label"
+            ],
+            "canopy_height_eth": [
+                "height",
+                "std"
+            ],
+            "esa_worldcover": [
+                "Map"
+            ],
+            "copernicus_dem": [
+                "DEM"
+            ]
+        }
+    }
+}
