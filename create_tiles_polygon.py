@@ -34,7 +34,7 @@ def get_uniq_val(*args):
                 id += j[0].lower()         
     return id
 
-@hydra.main(config_path='config', config_name='config_tiles')
+@hydra.main(config_path='config', config_name='config_tiles_10k')
 def main(cfg: DictConfig) -> None:
     print(OmegaConf.to_yaml(cfg))
 

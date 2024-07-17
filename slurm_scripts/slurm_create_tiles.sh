@@ -13,7 +13,7 @@ echo "SLURM_JOB_NODELIST: $SLURM_JOB_NODELIST"
 
 
 
-python -u create_tiles_polygon.py tiles_geojson_path=$DATA/tile_polygons/uni_biomes_only/tiles_300k_130.geojson num_of_images=300000 tile_size=1300 uniform_type=0 
+python -u create_tiles_polygon.py
 
 
 

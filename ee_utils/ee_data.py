@@ -184,8 +184,15 @@ class ee_set:
             logging.error('\t No sentinel2 image found for both l1c and l2a')
             return False
         img_list = filtered_images.toList(filtered_images.size())
-        random_number = random.randint(0, num_filtered_images - 1)
-        sampled_image_full = ee.Image(img_list.get(random_number))
+        logging.debug(f"Sen2: {num_filtered_images=}")
+        for _ in range(3):
+            random_number = random.randint(0, num_filtered_images - 1)
+            sampled_image_full = ee.Image(img_list.get(random_number))
+            band_names = sampled_image_full.bandNames().getInfo()
+            if "QA60" in band_names:
+                break
+        else:
+            return
         # Select the desired bands and clip the image
         if self.s2_type == 'l2a':
             if "MSK_CLDPRB" in sampled_image_full.bandNames().getInfo():
@@ -560,6 +567,8 @@ class ee_set:
             .map(lambda image: image.clip(self.polygon))
             .select(bands)
         )
+        if dem.size().getInfo() == 0:
+            return
         dem = dem.first()
         dem = dem.resample('bilinear').reproject(self.proj)
         self.image_set[data_name] = dem

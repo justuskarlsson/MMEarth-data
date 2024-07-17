@@ -2,12 +2,12 @@ hydra:
   job:
     chdir: false
 biome_names_path: 'stats/biome_names.json' # path to the file containing the names of the biomes
-tiles_geojson_path: '${oc.env:DATA}/data_1M_3d/tiles.geojson' # path to the file containing the tiles 
-failed_eco_regions_path: '${oc.env:DATA}/data_1M_3d/failed_eco_regions.txt' # path to the file containing the eco regions that failed to download
+tiles_geojson_path: '${oc.env:DATA}/data_10k_3d/tiles.geojson' # path to the file containing the tiles 
+failed_eco_regions_path: '${oc.env:DATA}/data_10k_3d/failed_eco_regions.txt' # path to the file containing the eco regions that failed to download
 
 
 tile_size: 1300 # 1.3km
-num_of_images: 1300000 # always set this number more than the number of tiles required. This is because some tiles might fail to download
+num_of_images: 10000 # always set this number more than the number of tiles required. This is because some tiles might fail to download
 num_of_biomes: 14 # number of biomes in the world (do not change)
 
 # uniform sampling type:

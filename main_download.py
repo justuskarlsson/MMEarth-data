@@ -24,7 +24,7 @@ warnings.filterwarnings("ignore")
 
 
 
-@hydra.main(config_path='config', config_name='config_data_3d')
+@hydra.main(config_path='config', config_name='config_data_10k.yaml')
 def main(cfg: DictConfig) -> None:
     print(OmegaConf.to_yaml(cfg))
     
